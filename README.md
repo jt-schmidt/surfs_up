@@ -27,11 +27,12 @@ Objective are to:
 ## Results
 
 Base statistical comparison between temperatures in June & December for all years 2010 ~ 2017.
+
 ![June_December_Summary](/June_December_Summary.png)
 
 Key observations:
 1.  There are 183 additional data points in June than December.  This is surprising considering a difference between months by only 1 day.  
-  - It is recommended to perform deeper analysis to understand the data collection delta between the months.
+    - It is recommended to perform deeper analysis to understand the data collection delta between the months.
 2.  Max, Mean & Standard Deviation in temperatures are very stable despite summer & winter months with temperature swing of only 2F, 4F and 0.5F, respectively.
 3.  Largest temperature difference is in the Minimum experienced with a low of 56F in December.  
 4.  I want to live in Hawaii.
