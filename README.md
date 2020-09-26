@@ -42,7 +42,7 @@ Key observations:
 Overall, the temperature difference across the locations on the island state of Hawaii are quite stable.  
 However, the year over year review does show a slight trend upward which may support Global Warming studies.
 
-![Hawaii_Annual_Temp_Chart](/Hawaii_Annual_Temp_Chart.png)
+![Hawaii_Annual_Temp_Chart](/Hawaii_Annual_Temp_Chart.PNG)
 
 ```SQL
 --Raw SQL for 1st Query
