@@ -38,12 +38,35 @@ Key observations:
 4.  I want to live in Hawaii.
 
 ## Summary
-## Deliverable 3: Extract and Transform the Kaggle Data
 
 
 
+```SQL
+--Raw SQL
+SELECT
+	substr(m.date,1,4) as year,
+	substr(m.date,6,2) as month,
+	count(m.tobs) as count_temp,
+	min(m.tobs) as min_temp,
+	avg(m.tobs) as avg_temp,
+	max(m.tobs) as max_temp
+from measurement m
+group by
+	substr(m.date,1,4),
+	substr(m.date,6,2)
+```
 
-
+```Python
+#Using SQL Alchemy
+first_results = session.query(
+        func.substr(Measurement.date,1,4).label('year'),
+        func.substr(Measurement.date,6,2).label('month'),
+        func.count(Measurement.tobs).label('count_temp'),
+        func.min(Measurement.tobs).label('min_temp'),
+        func.avg(Measurement.tobs).label('avg_temp'),
+        func.max(Measurement.tobs).label('max_temp')
+).group_by(func.substr(Measurement.date,1,4),func.substr(Measurement.date,6,2)).all()
+```
 <!---
 Deliverable 1
 --A working query is written to retrieve the June temperatures from the date column of the Measurement table. (10 pt)
