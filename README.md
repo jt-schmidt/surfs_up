@@ -44,6 +44,11 @@ However, the year over year review does show a slight trend upward which may sup
 
 ![Hawaii_Annual_Temp_Chart](/Hawaii_Annual_Temp_Chart.PNG)
 
+Geographical review of the data would be more useful since temperature delta based on location seems more significant than time of year as overall metric.
+Please observe **UPPER WAHIAWA 874.3** versus **WAIKIKI 717.2**.
+
+![Temp_By_Location](/Temp_By_Location.png)
+
 ```SQL
 --Raw SQL for 1st Query
 SELECT
