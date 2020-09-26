@@ -68,6 +68,8 @@ first_results = session.query(
 ).group_by(func.substr(Measurement.date,1,4),func.substr(Measurement.date,6,2)).all()
 ```
 
+![First_Query_Result](/First_Query_Result.png)
+
 ```SQL
 --Raw SQL for 2nd Query
 SELECT
@@ -99,6 +101,10 @@ second_results = session.query(
 ).filter(or_(Measurement.date.like('%-12-%'),Measurement.date.like('%-06-%'))
 ).group_by(Station.name,func.substr(Measurement.date,6,2)).all()
 ```
+
+![Second_Query_Result](/Second_Query_Result.png)
+
+
 <!---
 Deliverable 1
 --A working query is written to retrieve the June temperatures from the date column of the Measurement table. (10 pt)
