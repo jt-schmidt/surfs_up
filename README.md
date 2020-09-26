@@ -42,7 +42,7 @@ Key observations:
 
 
 ```SQL
---Raw SQL
+--Raw SQL for 1st Query
 SELECT
 	substr(m.date,1,4) as year,
 	substr(m.date,6,2) as month,
@@ -57,7 +57,7 @@ group by
 ```
 
 ```Python
-#Using SQL Alchemy
+#Using SQL Alchemy for 1st Query
 first_results = session.query(
         func.substr(Measurement.date,1,4).label('year'),
         func.substr(Measurement.date,6,2).label('month'),
@@ -66,6 +66,38 @@ first_results = session.query(
         func.avg(Measurement.tobs).label('avg_temp'),
         func.max(Measurement.tobs).label('max_temp')
 ).group_by(func.substr(Measurement.date,1,4),func.substr(Measurement.date,6,2)).all()
+```
+
+```SQL
+--Raw SQL for 2nd Query
+SELECT
+	s.name,
+	substr(m.date,6,2) as month,
+	count(m.tobs) as count_temp,
+	min(m.tobs) as min_temp,
+	avg(m.tobs) as avg_temp,
+	max(m.tobs) as max_temp
+from measurement m
+inner join station s on m.station = s.station
+WHERE
+	m.date like '%-06-%' or 
+	m.date like '%-12-%'
+group by
+	s.name,
+	substr(m.date,6,2)
+```
+```Python
+#Using SQL Alchemy for 2nd Query
+second_results = session.query(
+        Station.name,
+        func.substr(Measurement.date,6,2).label('month'),
+        func.count(Measurement.tobs).label('count_temp'),
+        func.min(Measurement.tobs).label('min_temp'),
+        func.avg(Measurement.tobs).label('avg_temp'),
+        func.max(Measurement.tobs).label('max_temp')
+).join(Station, Measurement.station == Station.station
+).filter(or_(Measurement.date.like('%-12-%'),Measurement.date.like('%-06-%'))
+).group_by(Station.name,func.substr(Measurement.date,6,2)).all()
 ```
 <!---
 Deliverable 1
